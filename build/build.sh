@@ -83,6 +83,10 @@
 # Version 7:
 #     Supports rebuilding sepolicy with vendor side otatools.
 #     option : --rebuild_sepolicy_with_vendor_otatools=<path-to-vendor-otatools>
+# Version 8:
+#     Supports --techpack argument to build techpack target(s)
+#     Use options: --techpack <teckpack target(s)>
+#     Usage: ./build.sh dist --teckpack -j32 <teckpack target(s)>
 #
 BUILD_SH_VERSION=7
 if [ "$1" == "--version" ]; then
@@ -152,6 +156,10 @@ while [[ $# -gt 0 ]]
             LIST_TECH_PACKAGE="$LIST_TECH_PACKAGE$arg"
             shift
             ;;
+        *techpack)
+            TP_ONLY=1
+            shift
+            ;;
         *)  # all other option
             MAKE_ARGUMENTS+=("$1") # save it in an array to pass to make later
             shift
@@ -161,7 +169,7 @@ done
 set -- "${MAKE_ARGUMENTS[@]}" # restore the argument list ($@) to be set to MAKE_ARGUMENTS
 
 # If none of the discrete options are passed, this is a full build
-if [[ "$MERGE_ONLY" != 1 && "$QSSI_ONLY" != 1 && "$TARGET_ONLY" != 1 && "$TARGET_PRODUCT" != "qssi" ]]; then
+if [[ "$MERGE_ONLY" != 1 && "$QSSI_ONLY" != 1 && "$TARGET_ONLY" != 1 && "$TARGET_PRODUCT" != "qssi" && "$TP_ONLY" != 1 ]]; then
     FULL_BUILD=1
 fi
 
@@ -236,6 +244,7 @@ VIRTUAL_AB_ENABLED_TARGET_LIST=("kona" "lito" "taro" "kalama" "lahaina")
 DYNAMIC_PARTITION_ENABLED_TARGET_LIST=("holi" "taro" "kalama" "lahaina" "kona" "msmnile" "sdm710" "lito" "trinket" "atoll" "qssi" "qssi_32" "qssi_32go" "bengal" "bengal_32" "bengal_32go" "sm6150")
 DYNAMIC_PARTITIONS_IMAGES_PATH=$OUT
 DP_IMAGES_OVERRIDE=false
+TECHPACK_LIST=("camera_tp" "display_tp" "video_tp" "audio_tp" "sensors_tp" "cv_tp" "xr_tp")
 
 OTATOOLS_DIR="$(mktemp --directory)"
 MERGED_TARGET_FILES_DIR="$(mktemp --directory)"
@@ -539,6 +548,41 @@ function run_dca() {
     fi
 }
 
+# This will compile techpack targets. The target naming convention:
+#    <tech team name>_tp will call main target to compile all groups, or
+#    <tech team name>_tp_<group name> to compile specific group
+# Example, Camera has main target as camera_tp, and group targets as camera_tp_hal camera_tb_dlkm camera_tb_apk camera_tb_app camera_tp_kernel
+function build_techpack_only () {
+    TPARGS=()
+    for tp in "${TECHPACK_LIST[@]}"
+    do
+      for arg in $QSSI_ARGS
+      do
+        if [[ "$arg" == "$tp"* ]]; then
+            echo "Request to build techpack $arg"
+            TPARGS+=("${arg}")
+        fi
+      done
+    done
+    if [[ -z "${TPARGS}" ]]; then
+        echo "Please check you have specified techpack target name in the build command ..!!!"
+        echo "And techpack target name added to TECHPACK_LIST[] in build.sh ..!!!"
+        exit 1
+    else
+        for target in "${TPARGS[@]}"
+        do
+            echo Will build techpack target: $target
+        done
+    fi
+    command "source build/envsetup.sh"
+    command "python2 -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
+    command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
+    QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
+    command "run_qiifa_initialization"
+    command "make $QSSI_ARGS"
+    command "run_qiifa"
+}
+
 # Check if qssi is supported on this target or not.
 for QSSI_TARGET in "${QSSI_TARGETS_LIST[@]}"
 do
@@ -577,6 +621,11 @@ else # For QSSI targets
     if [[ "$TARGET_ONLY" -eq 1 ]]; then
         log "Executing a target only build for $TARGET_PRODUCT ..."
         build_target_only
+    fi
+
+    if [[ "$TP_ONLY" -eq 1 ]]; then
+        log "Executing a techpack only build for $TARGET_PRODUCT ..."
+        build_techpack_only
     fi
 
     if [[ "$MERGE_ONLY" -eq 1 ]]; then
