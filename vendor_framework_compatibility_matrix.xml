@@ -1027,15 +1027,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>vendor.qti.hardware.qccsyshal</name>
-        <transport>hwbinder</transport>
-        <version>1.0-1</version>
-        <interface>
-            <name>IQccsyshal</name>
-            <instance>qccsyshal</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.limits</name>
        <transport>hwbinder</transport>
        <version>1.0-1</version>
