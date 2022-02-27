@@ -418,6 +418,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>deviceinfo</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.radio.internal.deviceinfo</name>
+        <version>1</version>
+        <interface>
+            <name>IDeviceInfo</name>
+            <instance>deviceinfo</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.radio.lpa</name>
         <version>1.0-2</version>
@@ -430,6 +438,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.radio.qcrilhook</name>
            <version>1.0</version>
+           <interface>
+               <name>IQtiOemHook</name>
+               <instance>oemhook0</instance>
+               <instance>oemhook1</instance>
+           </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.radio.qcrilhook</name>
+           <version>1</version>
            <interface>
                <name>IQtiOemHook</name>
                <instance>oemhook0</instance>
@@ -1134,6 +1151,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <interface>
             <name>IQXRAudioService</name>
             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.radio.atcmdfwd</name>
+        <version>1</version>
+        <interface>
+            <name>IAtCmdFwd</name>
+            <instance>AtCmdFwdAidl</instance>
         </interface>
     </hal>
 </compatibility-matrix>
