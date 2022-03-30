@@ -573,7 +573,7 @@ function build_techpack_only () {
     command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
-    command "make $QSSI_ARGS"
+    command "make $QSSI_ARGS selinux_policy"
     command "run_qiifa"
 }
 
