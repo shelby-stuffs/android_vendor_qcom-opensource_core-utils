@@ -475,13 +475,28 @@ function run_qiifa_for_techpackage () {
 }
 
 function run_qiifa () {
+    BUILD_TYPE=""
+    if [ "$1" == "techpack" ]; then
+        BUILD_TYPE="--techpack_build"
+    fi
     IFS=':' read -ra ADDR <<< "${LIST_TECH_PACKAGE:15}"
     if [[ -n ${ADDR[1]} && "${ADDR[1]}" == "golden" ]]; then
       command "run_qiifa_for_techpackage"
     fi
     QIIFA_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
     if [ -f $QIIFA_SCRIPT ]; then
-     command "python $QIIFA_SCRIPT --type all --enforced 1"
+     command "python $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
+    fi
+}
+
+function run_qiifa_dependency_checker() {
+    BUILD_TYPE=""
+    if [ "$1" == "techpack" ]; then
+        BUILD_TYPE="--techpack_build"
+    fi
+    QIIFA_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
+    if [ -f $QIIFA_SCRIPT ]; then
+     command "python $QIIFA_SCRIPT --type api_dep --enforced 1 $BUILD_TYPE"
     fi
 }
 
@@ -502,6 +517,7 @@ function build_target_only () {
     command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
+    command "run_qiifa_dependency_checker target"
     command "make $QSSI_ARGS"
     if [ "$BUILDING_WITH_VSDK" = true ]; then
         command "cp vendor/qcom/otatools_snapshot/otatools.zip out/dist/otatools.zip"
@@ -573,8 +589,9 @@ function build_techpack_only () {
     command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
+    command "run_qiifa_dependency_checker techpack"
     command "make $QSSI_ARGS selinux_policy"
-    command "run_qiifa"
+    command "run_qiifa techpack"
 }
 
 # Check if qssi is supported on this target or not.
