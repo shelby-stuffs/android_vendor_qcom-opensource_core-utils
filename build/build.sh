@@ -188,7 +188,7 @@ if [[ "$TARGET_PRODUCT" == "qssi" ]]; then
     QSSI_ONLY=1
 fi
 
-QSSI_TARGETS_LIST=("holi" "taro" "kalama" "lahaina" "sdm710" "sdm845" "msmnile" "sm6150" "kona" "atoll" "trinket" "lito" "bengal" "qssi" "qssi_32" "qssi_32go" "bengal_32" "bengal_32go")
+QSSI_TARGETS_LIST=("holi" "taro" "kalama" "pineapple" "lahaina" "sdm710" "sdm845" "msmnile" "sm6150" "kona" "atoll" "trinket" "lito" "bengal" "qssi" "qssi_32" "qssi_32go" "bengal_32" "bengal_32go")
 QSSI_TARGET_FLAG=0
 SKIP_ABI_CHECKS=true
 
@@ -239,9 +239,9 @@ QSSI_ARGS_WITHOUT_DIST=""
 DIST_DIR="out/dist"
 MERGED_TARGET_FILES="$DIST_DIR/merged-qssi_${TARGET_PRODUCT}-target_files.zip"
 MERGED_OTA_ZIP="$DIST_DIR/merged-qssi_${TARGET_PRODUCT}-ota.zip"
-DIST_ENABLED_TARGET_LIST=("holi" "taro" "kalama" "lahaina" "kona" "sdm710" "sdm845" "msmnile" "sm6150" "trinket" "lito" "bengal" "atoll" "qssi" "qssi_32" "qssi_32go" "bengal_32" "bengal_32go")
-VIRTUAL_AB_ENABLED_TARGET_LIST=("kona" "lito" "taro" "kalama" "lahaina")
-DYNAMIC_PARTITION_ENABLED_TARGET_LIST=("holi" "taro" "kalama" "lahaina" "kona" "msmnile" "sdm710" "lito" "trinket" "atoll" "qssi" "qssi_32" "qssi_32go" "bengal" "bengal_32" "bengal_32go" "sm6150")
+DIST_ENABLED_TARGET_LIST=("holi" "taro" "kalama" "pineapple" "lahaina" "kona" "sdm710" "sdm845" "msmnile" "sm6150" "trinket" "lito" "bengal" "atoll" "qssi" "qssi_32" "qssi_32go" "bengal_32" "bengal_32go")
+VIRTUAL_AB_ENABLED_TARGET_LIST=("kona" "lito" "taro" "kalama" "pineapple" "lahaina")
+DYNAMIC_PARTITION_ENABLED_TARGET_LIST=("holi" "taro" "kalama" "pineapple" "lahaina" "kona" "msmnile" "sdm710" "lito" "trinket" "atoll" "qssi" "qssi_32" "qssi_32go" "bengal" "bengal_32" "bengal_32go" "sm6150")
 DYNAMIC_PARTITIONS_IMAGES_PATH=$OUT
 DP_IMAGES_OVERRIDE=false
 TECHPACK_LIST=("camera_tp" "display_tp" "video_tp" "audio_tp" "sensors_tp" "cv_tp" "xr_tp")
