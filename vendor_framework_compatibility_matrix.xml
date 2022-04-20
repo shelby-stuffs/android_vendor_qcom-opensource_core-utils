@@ -1152,4 +1152,12 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>AtCmdFwdAidl</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.data.txpwrservice</name>
+        <version>1</version>
+        <interface>
+            <name>ITxPwrService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>
