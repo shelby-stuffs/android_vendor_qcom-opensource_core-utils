@@ -189,6 +189,7 @@ if [[ "$TARGET_PRODUCT" == "qssi" ]]; then
 fi
 
 QSSI_TARGETS_LIST=("holi" "taro" "kalama" "kalama64" "pineapple" "lahaina" "sdm710" "sdm845" "msmnile" "sm6150" "kona" "atoll" "trinket" "lito" "bengal" "qssi" "qssi_64" "qssi_32" "qssi_32go" "bengal_32" "bengal_32go")
+VENDOR_64_ONLY_CONFIGS=("qssi_64" "kalama64" "pineapple")
 QSSI_TARGET_FLAG=0
 SKIP_ABI_CHECKS=true
 
@@ -200,13 +201,19 @@ case "$TARGET_PRODUCT" in
     *_32go)
        TARGET_QSSI="qssi_32go"
         ;;
-    *64)
-       TARGET_QSSI="qssi_64"
-        ;;
     *)
         TARGET_QSSI="qssi"
         ;;
 esac
+
+for VENDOR_64_BIT_CONFIG in  "${VENDOR_64_ONLY_CONFIGS[@]}"
+do
+    if [ "$TARGET_PRODUCT" == "$VENDOR_64_BIT_CONFIG" ]; then
+    log "${TARGET_PRODUCT} is a 64-bit Only configuration"
+    TARGET_QSSI="qssi_64"
+    break
+    fi
+done
 
 NON_AB_TARGET_LIST=("qssi_32go" "bengal_32go")
 for NON_AB_TARGET in "${NON_AB_TARGET_LIST[@]}"
