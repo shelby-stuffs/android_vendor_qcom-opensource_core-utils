@@ -516,6 +516,12 @@ function run_qiifa () {
     BUILD_TYPE=""
     if [ "$1" == "techpack" ]; then
         BUILD_TYPE="--techpack_build"
+        if [ -z "$2" ]; then
+            TECHPACK_BUILD_LIST=""
+        else
+            TECHPACK_BUILD_LIST="$2"
+            echo "Techpack names are provided"
+        fi
     fi
     IFS=':' read -ra ADDR <<< "${LIST_TECH_PACKAGE:15}"
     if [[ -n ${ADDR[1]} && "${ADDR[1]}" == "golden" ]]; then
@@ -523,7 +529,16 @@ function run_qiifa () {
     fi
     QIIFA_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
     if [ -f $QIIFA_SCRIPT ]; then
-     command "python $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
+        if [ "$1" == "techpack" ]; then
+            if [ "$TECHPACK_BUILD_LIST" == "" ]; then
+                command "python $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
+                echo "No techpack_name arguments were given with build command"
+            else
+                command "python $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE --techpack_names $TECHPACK_BUILD_LIST"
+            fi
+        else
+            command "python $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
+        fi
     fi
 }
 
@@ -616,6 +631,7 @@ function run_dca() {
 # Example, Camera has main target as camera_tp, and group targets as camera_tp_hal camera_tb_dlkm camera_tb_apk camera_tb_app camera_tp_kernel
 function build_techpack_only () {
     TPARGS=()
+    TECHPACK_BUILD_LIST=""
     for tp in "${TECHPACK_LIST[@]}"
     do
       for arg in $QSSI_ARGS
@@ -623,6 +639,7 @@ function build_techpack_only () {
         if [[ "$arg" == "$tp"* ]]; then
             echo "Request to build techpack $arg"
             TPARGS+=("${arg}")
+            TECHPACK_BUILD_LIST+="$arg,"
         fi
       done
     done
@@ -643,7 +660,7 @@ function build_techpack_only () {
     command "run_qiifa_initialization"
     command "run_qiifa_dependency_checker techpack"
     command "make $QSSI_ARGS selinux_policy"
-    command "run_qiifa techpack"
+    command "run_qiifa techpack $TECHPACK_BUILD_LIST"
 }
 
 # For non-QSSI targets
