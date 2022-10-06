@@ -138,7 +138,7 @@ def check_for_hidl_aidl_intermediate_libs(module_name,class_type):
             if not aidl_info is None:
                 aidl_module_name = aidl_info["name"]
                 if aidl_module_name in module_name :
-                    if class_type == "JAVA_LIBRARIES" or class_type == "SHARED_LIBRARIES":
+                    if class_type == "JAVA_LIBRARIES" or class_type == "SHARED_LIBRARIES" or "cpp-analyzer" in module_name:
                         return True
         return False
 
