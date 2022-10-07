@@ -1305,6 +1305,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.bluetooth.xpanprovider</name>
+        <version>1</version>
+        <interface>
+            <name>IXpanProvider</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
         <name>android.se.omapi</name>
         <version>1</version>
         <interface>
