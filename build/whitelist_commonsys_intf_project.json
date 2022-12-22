@@ -6,7 +6,5 @@
 "vendor/qcom/opensource/commonsys-intf/display/libqdmetadata",
 "vendor/widevine/libwvdrmengine",
 "vendor/google_clockwork/samples/ModernDecompWatchfaces",
-"vendor/qcom/proprietary/interfaces-noship/qesdsysaidl",
-"vendor/qcom/opensource/interfaces/wifi/supplicant/aidl",
-"vendor/qcom/proprietary/interfaces/gnss/aidl"
+"vendor/widevine/libwvdrmengine/apex"
 ]
