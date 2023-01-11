@@ -1077,6 +1077,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>qccvndhal</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.qccvndhal_aidl</name>
+        <version>1</version>
+        <interface>
+            <name>IQccvndhal</name>
+            <instance>qccvndhal</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.ims.factory</name>
         <version>1.0-1</version>
