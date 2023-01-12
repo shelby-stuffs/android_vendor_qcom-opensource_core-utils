@@ -1472,6 +1472,16 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- AKS service-->
+    <hal format="hidl" optional="true">
+        <name>vendor.aks.gamepad</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IGamepad</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.ims.datachannelservice</name>
         <version>1</version>
