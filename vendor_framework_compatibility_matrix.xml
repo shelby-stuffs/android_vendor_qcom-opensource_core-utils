@@ -133,6 +133,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
              <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.display.demura</name>
+        <version>1</version>
+        <interface>
+             <name>IDemuraFileFinder</name>
+             <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.qseecom</name>
         <version>1.0</version>
