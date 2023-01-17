@@ -27,6 +27,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+#
+#
 # This script is mainly to compile QSSI targets. For other targets, usage
 # of regular "make" is recommended.
 #
@@ -555,8 +560,8 @@ function run_qiifa_dependency_checker() {
 
 function build_qssi_only () {
     command "source build/envsetup.sh"
-    command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     command "lunch ${TARGET_PRODUCT}-${TARGET_BUILD_VARIANT}"
+    command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     command "make $QSSI_ARGS"
     COMMONSYS_INTF_SCRIPT="$QTI_BUILDTOOLS_DIR/build/commonsys_intf_checker.py"
     if [ -f $COMMONSYS_INTF_SCRIPT ];then
@@ -654,8 +659,8 @@ function build_techpack_only () {
         done
     fi
     command "source build/envsetup.sh"
-    command "python2 -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
+    command "python2 -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
     command "run_qiifa_dependency_checker techpack"
