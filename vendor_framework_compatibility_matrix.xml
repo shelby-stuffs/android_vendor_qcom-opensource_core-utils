@@ -153,6 +153,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.factory</name>
+        <version>1</version>
+        <interface>
+            <name>IFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>com.qualcomm.qti.dpm.api</name>
         <version>1.0</version>
@@ -411,7 +419,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.ims</name>
-        <version>1-9</version>
+        <version>1-10</version>
         <interface>
             <name>IImsRadio</name>
             <instance>imsradio0</instance>
@@ -482,7 +490,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.qtiradioconfig</name>
-        <version>1-2</version>
+        <version>1-3</version>
         <interface>
             <name>IQtiRadioConfig</name>
             <instance>default</instance>
@@ -843,6 +851,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <version>4.0</version>
         <interface>
             <name>IQtiAllocator</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.graphics.allocator</name>
+        <version>1</version>
+        <interface>
+            <name>IAllocator</name>
             <instance>default</instance>
         </interface>
     </hal>
