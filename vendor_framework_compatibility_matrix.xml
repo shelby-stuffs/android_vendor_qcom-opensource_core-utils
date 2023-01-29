@@ -1041,6 +1041,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>camerapostprocservice</instance>
         </interface>
     </hal>
+    <!-- Offline Camera service -->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.camera.offlinecamera</name>
+        <version>1</version>
+        <interface>
+            <name>IOfflineCameraService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <!-- Camera AON service -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.camera.aon</name>
