@@ -30,7 +30,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <!--
 Changes from Qualcomm Innovation Center are provided under the following license:
 
-Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted (subject to the limitations in the
@@ -103,6 +103,22 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl" optional="true">
         <name>vendor.display.postproc</name>
         <version>1.0</version>
+        <interface>
+             <name>IDisplayPostproc</name>
+             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.display.color</name>
+        <version>1</version>
+        <interface>
+             <name>IDisplayColor</name>
+             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.display.postproc</name>
+        <version>1</version>
         <interface>
              <name>IDisplayPostproc</name>
              <instance>default</instance>
@@ -481,7 +497,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.qtiradio</name>
-        <version>1-8</version>
+        <version>1-9</version>
         <interface>
             <name>IQtiRadioStable</name>
             <instance>slot1</instance>
@@ -669,7 +685,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.gnss</name>
-        <version>1-2</version>
+        <version>1-4</version>
         <interface>
             <name>ILocAidlGnss</name>
             <instance>default</instance>
