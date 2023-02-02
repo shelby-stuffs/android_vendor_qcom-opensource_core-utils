@@ -1197,6 +1197,14 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.display.composer3</name>
+        <version>1</version>
+        <interface>
+            <name>IQtiComposer3Client</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.wifi.wificfr</name>
        <transport>hwbinder</transport>
