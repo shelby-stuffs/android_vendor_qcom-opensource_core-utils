@@ -25,15 +25,30 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-try:
-    from makefile_whitelist import *
-except ImportError:
-    pass
+# Changes from Qualcomm Innovation Center are provided under the following license:
+# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+#
 import io
 import os
 import subprocess
 import re
 import sys
+
+# Dynamically get whitelists from device/qcom/<target>/
+ANDROID_BUILD_TOP = os.environ.get('ANDROID_BUILD_TOP') + '/'
+TARGET_PRODUCT = os.environ.get('TARGET_PRODUCT')
+sys.path.insert(1, "%sdevice/qcom/%s" % (ANDROID_BUILD_TOP, TARGET_PRODUCT))
+sys.path.insert(1, "%sdevice/qcom/qssi_64" % ANDROID_BUILD_TOP)
+try:
+    from qssi_makefile_whitelist import *
+    if "qssi" not in TARGET_PRODUCT:
+        from target_makefile_whitelist import *
+    print("Using target specific whitelist")
+except ImportError:
+    # Fall back to legacy
+    print("Using legacy target whitelist.")
+    from makefile_whitelist import *
 
 kernel_errors = set()
 shell_errors = set()
@@ -66,7 +81,8 @@ whitelist_vars = ["SHELL_WHITELIST", "RM_WHITELIST", "LOCAL_COPY_HEADERS_WHITELI
 for w in whitelist_vars:
     if w not in globals():
         exec("%s = set()" % w, globals())
-
+    if "VENDOR_" + w not in globals():
+        exec("VENDOR_%s = set()" % w, globals())
 
 def check_kernel_deps(line, file_name):
     global cur_file_name
@@ -170,21 +186,28 @@ def scan_files(file_list):
 
                         if re.match(r'.*/Android.mk', f):
                             # Check all makefile only issues
-                            if f not in SHELL_WHITELIST:
+                            if (f not in SHELL_WHITELIST) and \
+                               (f not in VENDOR_SHELL_WHITELIST):
                                 check_shell(line, f)
-                            if f not in RM_WHITELIST:
+                            if (f not in RM_WHITELIST) and \
+                               (f not in VENDOR_RM_WHITELIST):
                                 check_rm(line, f)
-                            if f not in LOCAL_COPY_HEADERS_WHITELIST:
+                            if (f not in LOCAL_COPY_HEADERS_WHITELIST) and \
+                               (f not in VENDOR_LOCAL_COPY_HEADERS_WHITELIST):
                                 check_local_copy_headers(line, f)
-                            if f not in DATETIME_WHITELIST:
+                            if (f not in DATETIME_WHITELIST) and \
+                               (f not in VENDOR_DATETIME_WHITELIST):
                                 check_datetime(line, f)
-                            # if f not in RECURSIVE_WHITELIST:
+                            # if (f not in RECURSIVE_WHITELIST) and \
+                            #    (f not in VENDOR_RECURSIVE_WHITELIST):
                             #     check_recursive(line, f)
-                            if f not in KERNEL_WHITELIST:
+                            if (f not in KERNEL_WHITELIST) and \
+                               (f not in VENDOR_KERNEL_WHITELIST):
                                 check_kernel_deps(line, f)
 
                         # Check TARGET_PRODUCT in all files
-                        if f not in TARGET_PRODUCT_WHITELIST:
+                        if (f not in TARGET_PRODUCT_WHITELIST) and \
+                           (f not in VENDOR_TARGET_PRODUCT_WHITELIST):
                             check_target_product_related(line, f)
 
                 # Check kernel issue at end of file (in case no CLEAR_VARS)
@@ -207,7 +230,7 @@ def print_messages():
         print("cnt_kernel_error : %s" % len(kernel_errors))
         print("Error: Missing LOCAL_ADDITIONAL_DEPENDENCIES in below modules.")
         print("please use LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr")
-        for error in kernel_errors:
+        for error in sorted(kernel_errors):
             module = error.split("::")[0]
             file_name = error.split("::")[1]
             print("    Module: %s in %s" % (module, file_name))
@@ -217,7 +240,7 @@ def print_messages():
         print("-----------------------------------------------------")
         print("cnt_shell_error : %s" % len(shell_errors))
         print("Error: Using $(shell) in below files. Please remove usage of $(shell)")
-        for file_name in shell_errors:
+        for file_name in sorted(shell_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -226,7 +249,7 @@ def print_messages():
         print("cnt_recursive_error : %s" % len(recursive_errors))
         print("Warning: Using recursive assignment (=) in below files.")
         print("please review use of recursive assignment and convert to simple assignment (:=) if necessary.")
-        for file_name in recursive_errors:
+        for file_name in sorted(recursive_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -234,7 +257,7 @@ def print_messages():
         print("-----------------------------------------------------")
         print("cnt_rm_error : %s" % len(rm_errors))
         print("Error: Using rm in below makefiles. Please remove use of rm to prevent recompilation.")
-        for file_name in rm_errors:
+        for file_name in sorted(rm_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -243,7 +266,7 @@ def print_messages():
         print("cnt_datetime_error : %s" % len(datetime_errors))
         print("Error: Using CFLAG -Wno-error=date-time or -Wno-date-time in below makefiles. This may lead to varying build output.")
         print("Please remove use of this CFLAG.")
-        for file_name in datetime_errors:
+        for file_name in sorted(datetime_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -252,7 +275,7 @@ def print_messages():
         print("cnt_local_copy_headers_error : %s" %
               len(local_copy_headers_errors))
         print("Error: Using local_copy_headers in below makefiles. This will be deprecated soon, please remove.")
-        for file_name in local_copy_headers_errors:
+        for file_name in sorted(local_copy_headers_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -260,7 +283,7 @@ def print_messages():
         print("-----------------------------------------------------")
         print("cnt_target_product_error : %s" % len(target_product_errors))
         print("Error: Using TARGET_PRODUCT in below makefiles. Please replace them with TARGET_BOARD_PLATFORM")
-        for file_name in target_product_errors:
+        for file_name in sorted(target_product_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -269,7 +292,7 @@ def print_messages():
         print("cnt_is_product_in_list_error : %s" %
               len(is_product_in_list_errors))
         print("Error: Using is-product-in-list in below makefiles. Please replace them with is-board-platform-in-list")
-        for file_name in is_product_in_list_errors:
+        for file_name in sorted(is_product_in_list_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -277,7 +300,7 @@ def print_messages():
         print("-----------------------------------------------------")
         print("cnt_ro_build_product_error : %s" % len(ro_build_product_errors))
         print("Error: Using ro.build.product in below makefiles. Please replace them with ro.board.platform")
-        for file_name in ro_build_product_errors:
+        for file_name in sorted(ro_build_product_errors):
             print("    %s" % file_name)
         print("-----------------------------------------------------")
         found_errors = True
@@ -287,10 +310,8 @@ def print_messages():
 
 def main():
 
-    global QTI_BUILDTOOLS_DIR, ANDROID_BUILD_TOP
+    global QTI_BUILDTOOLS_DIR, ANDROID_BUILD_TOP, TARGET_PRODUCT
     QTI_BUILDTOOLS_DIR = "%s/build" % os.environ.get('QTI_BUILDTOOLS_DIR')
-    ANDROID_BUILD_TOP = os.environ.get('ANDROID_BUILD_TOP') + '/'
-    TARGET_PRODUCT = os.environ.get('TARGET_PRODUCT')
     subdirs = ["hardware/qcom", "vendor/qcom", "device/qcom"]
     subdir_abspath_str = " ".join([ANDROID_BUILD_TOP+i for i in subdirs])
 
