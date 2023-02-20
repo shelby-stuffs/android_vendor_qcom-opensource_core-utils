@@ -561,9 +561,27 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>uimRemoteClient1</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.radio.uim_remote_client</name>
+        <version>1</version>
+        <interface>
+            <name>IUimRemoteServiceClient</name>
+            <instance>uimRemoteClient0</instance>
+            <instance>uimRemoteClient1</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.radio.uim_remote_server</name>
         <version>1.0</version>
+        <interface>
+            <name>IUimRemoteServiceServer</name>
+            <instance>uimRemoteServer0</instance>
+            <instance>uimRemoteServer1</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.radio.uim_remote_server</name>
+        <version>1</version>
         <interface>
             <name>IUimRemoteServiceServer</name>
             <instance>uimRemoteServer0</instance>
