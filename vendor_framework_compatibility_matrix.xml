@@ -1454,4 +1454,12 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>slot2</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.ims.factoryaidlservice</name>
+        <version>1</version>
+        <interface>
+            <name>IImsFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>
