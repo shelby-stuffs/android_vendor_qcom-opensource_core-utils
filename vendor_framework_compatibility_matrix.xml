@@ -1255,6 +1255,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.debugutils</name>
+        <version>1</version>
+        <interface>
+            <name>IDebugUtils</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRCoreService</name>
