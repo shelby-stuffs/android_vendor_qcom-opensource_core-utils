@@ -434,7 +434,7 @@ function generate_dynamic_partition_images () {
 }
 
 function generate_ota_zip () {
-    ENABLE_OTA_XOR_COMPRESSION=false
+    ENABLE_OTA_XOR_COMPRESSION=true
     log "Processing dist/ota commands:"
 
     FRAMEWORK_TARGET_FILES="$(find $DIST_DIR -name "qssi*-target_files-*.zip" -print)"
