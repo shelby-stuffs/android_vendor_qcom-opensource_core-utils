@@ -1528,4 +1528,13 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- SPU SuthSecret HAL service -->
+    <hal format="aidl" optional="true">
+        <name>android.hardware.authsecret.qti.spu</name>
+        <version>1</version>
+        <interface>
+            <name>IAuthSecret</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>
