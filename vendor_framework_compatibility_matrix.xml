@@ -366,6 +366,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.cacertaidlservice</name>
+        <version>1</version>
+        <interface>
+            <name>IService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.fm</name>
         <version>1.0</version>
@@ -1196,6 +1204,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>MwqemAdapter</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.mwqemadapteraidlservice</name>
+        <version>1</version>
+        <interface>
+            <name>IMwqemAdapter</name>
+            <instance>MwqemAdapter</instance>
+        </interface>
+    </hal>
     <!-- DpmService HAL service -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.dpmservice</name>
@@ -1206,6 +1222,16 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>DpmService</instance>
         </interface>
     </hal>
+    <!-- DpmService HAL AIDL service -->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.dpmaidlservice</name>
+        <version>1</version>
+        <interface>
+            <name>IDpmService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+
     <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.limits</name>
        <transport>hwbinder</transport>
