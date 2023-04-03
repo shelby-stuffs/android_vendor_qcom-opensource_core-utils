@@ -1311,13 +1311,21 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-       <name>vendor.qti.hardware.wifi.wificfr</name>
-       <transport>hwbinder</transport>
-       <version>1.0</version>
-       <interface>
+        <name>vendor.qti.hardware.wifi.wificfr</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IWificfr</name>
+            <instance>wificfr</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.wifi.wificfr</name>
+        <version>1</version>
+        <interface>
            <name>IWificfr</name>
-           <instance>wificfr</instance>
-       </interface>
+           <instance>default</instance>
+        </interface>
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.qesdhal</name>
