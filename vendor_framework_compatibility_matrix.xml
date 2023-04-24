@@ -1399,36 +1399,29 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.qxr</name>
+        <version>1-2</version>
         <interface>
             <name>IQXRCoreService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRCamService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRSplitService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRModService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRAudioService</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IQXRCommService</name>
             <instance>default</instance>
         </interface>
     </hal>
