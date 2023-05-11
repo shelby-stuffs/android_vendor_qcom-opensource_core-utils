@@ -1440,7 +1440,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.data.txpwrservice</name>
-        <version>1-4</version>
+        <version>1-5</version>
         <interface>
             <name>ITxPwrService</name>
             <instance>default</instance>
