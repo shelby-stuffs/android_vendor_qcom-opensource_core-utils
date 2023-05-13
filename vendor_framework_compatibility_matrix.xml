@@ -358,6 +358,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>slot1</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.data.factoryservice</name>
+        <version>1</version>
+        <interface>
+            <name>IFactory</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.cacert</name>
         <version>1.0</version>
@@ -507,7 +515,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.qtiradio</name>
-        <version>1-10</version>
+        <version>1-11</version>
         <interface>
             <name>IQtiRadioStable</name>
             <instance>slot1</instance>
@@ -1050,10 +1058,34 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>qtee-vm</instance>
         </interface>
     </hal>
+    <!-- Trusted UI HAL AIDL Service -->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.trustedui</name>
+        <version>1</version>
+        <interface>
+            <name>ITrustedUI</name>
+            <instance>qtee-vm</instance>
+            <instance>qtee-tz</instance>
+        </interface>
+        <interface>
+            <name>ITrustedInput</name>
+            <instance>qtee-vm</instance>
+            <instance>qtee-tz</instance>
+        </interface>
+    </hal>
     <!-- Secure image data processor HAL Service -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.secureprocessor.device</name>
         <version>1.0</version>
+        <interface>
+            <name>ISecureProcessor</name>
+            <instance>qti-tee</instance>
+            <instance>qti-tvm</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.secureprocessor.device</name>
+        <version>1</version>
         <interface>
             <name>ISecureProcessor</name>
             <instance>qti-tee</instance>
