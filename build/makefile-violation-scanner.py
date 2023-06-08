@@ -243,15 +243,15 @@ def check_target_product_related(line, file_name):
 
 
 def resolve_symlink(file_path):
-	file_path = file_path.strip()
-	#Find a symbolic link for the file parsed as input, if any exists
-	res_filepath = subprocess.check_output(
-           """find %s -exec readlink -f {} \\; """ %file_path, shell=True)
-	if re.search(ANDROID_BUILD_TOP,res_filepath):
-		res_filepath = re.sub(ANDROID_BUILD_TOP, '', res_filepath)
-		res_filepath = res_filepath.strip()
+    file_path = file_path.strip()
+    #Find a symbolic link for the file parsed as input, if any exists
+    res_filepath = subprocess.check_output(
+           """find %s -exec readlink -f {} \\; """ %file_path, shell=True).decode()
+    if re.search(ANDROID_BUILD_TOP,res_filepath):
+        res_filepath = re.sub(ANDROID_BUILD_TOP, '', res_filepath)
+        res_filepath = res_filepath.strip()
 
-	return res_filepath
+    return res_filepath
 
 
 
@@ -721,17 +721,17 @@ def main():
         file_path = resolve_symlink(file)
         # if the file was a symbolic link, remove it from the list since the resolved file is added instead
         if file_path != file:
-        	board_config_files.remove(file)
+            board_config_files.remove(file)
         if file_path not in board_config_files:
-        	board_config_files.append(file_path)
+            board_config_files.append(file_path)
 
     for file in inherited_files_product:
         file_path = resolve_symlink(file)
         #if the file was a symbolic link, remove it from the list since the resolved file is added instead
         if file_path != file:
-        	product_config_files.remove(file)
+            product_config_files.remove(file)
         if file_path not in product_config_files:
-        	product_config_files.append(file_path)
+            product_config_files.append(file_path)
 
     # Append any file that isnt found in files list
     for file in board_config_files:
