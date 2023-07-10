@@ -1057,8 +1057,20 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
              <name>ISystemResource</name>
              <instance>default</instance>
          </interface>
-     </hal>
-
+    </hal>
+    <!-- System Helper AIDL Service -->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.systemhelperaidl</name>
+        <version>1</version>
+        <interface>
+            <name>ISystemEvent</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>ISystemResource</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <!-- Trusted UI HAL Service -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.trustedui</name>
