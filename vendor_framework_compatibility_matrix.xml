@@ -945,9 +945,11 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
        </interface>
    </hal>
    <!-- Codec2 HAl service -->
+   <!-- KEYSTONE(I79bb62a5cb734b3b8218b1b1e3d107847b0ecca6,b/290853993) -->
    <hal format="hidl" optional="true">
        <name>android.hardware.media.c2</name>
        <version>1.0</version>
+       <version>1.1</version> 
        <version>1.2</version>
        <interface>
            <name>IComponentStore</name>

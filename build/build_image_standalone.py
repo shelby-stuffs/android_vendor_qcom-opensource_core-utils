@@ -181,7 +181,7 @@ def run_qiifa_checks(temp_dir, qssi_build_path, target_build_path, merged_build_
   QIIFA_CHECKS_DIR_PATH_TARGET = QIIFA_CHECKS_DIR_PATH + target_lunch
 
   # Fetch the QIIFA script
-  QIIFA_SCRIPT = "qiifa_py2"
+  QIIFA_SCRIPT = "qiifa_py3"
   if os.path.exists(qssi_build_path + "/" + OUT_QSSI + QIIFA_DIR_QSSI + "/" + QIIFA_SCRIPT):
     # Check for QIIFA script from $OUT_QSSI/QIIFA path first
     copy_items(qssi_build_path + "/" + OUT_QSSI + QIIFA_DIR_QSSI + "/", QIIFA_CHECKS_DIR_PATH, [QIIFA_SCRIPT], "QIIFA_SCRIPT")
