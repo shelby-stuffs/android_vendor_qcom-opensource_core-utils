@@ -443,7 +443,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.radio.ims</name>
-           <version>1.0-8</version>
+           <version>1.0-9</version>
            <interface>
                <name>IImsRadio</name>
                <instance>imsradio0</instance>
@@ -770,7 +770,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.gnss</name>
-        <version>1-4</version>
+        <version>1-5</version>
         <interface>
             <name>ILocAidlGnss</name>
             <instance>default</instance>
@@ -840,6 +840,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         <version>1.0</version>
         <interface>
             <name>IQtiExtendedFingerprint</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.fingerprint</name>
+        <version>1</version>
+        <interface>
+            <name>IQfpExtendedFingerprint</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -1220,7 +1228,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.spu</name>
-        <version>1</version>
+        <version>1-2</version>
         <interface>
             <name>ISPUManager</name>
             <instance>default</instance>
@@ -1399,36 +1407,29 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.qxr</name>
+        <version>1-2</version>
         <interface>
             <name>IQXRCoreService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRCamService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRSplitService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRModService</name>
             <instance>default</instance>
         </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.qti.hardware.qxr</name>
         <interface>
             <name>IQXRAudioService</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IQXRCommService</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -1469,6 +1470,16 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         <version>1</version>
         <interface>
             <name>ISecureElementService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <!-- AKS service-->
+    <hal format="hidl" optional="true">
+        <name>vendor.aks.gamepad</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IGamepad</name>
             <instance>default</instance>
         </interface>
     </hal>
