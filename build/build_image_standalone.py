@@ -322,7 +322,7 @@ def main():
     "qssi"      : ["holi", "taro", "kalama", "lahaina", "sdm710", "sdm845", "msmnile", "sm6150", "kona", "atoll", "trinket", "lito", "bengal", "parrot", "bengal_515", "crow", "anorak"],
     "qssi_32"   : ["bengal_32", "monaco"],
     "qssi_32go" : ["bengal_32go", "msm8937_lily"],
-    "qssi_64"   : ["kalama64", "pineapple", "blair", "sun", "niobe"],
+    "qssi_64"   : ["kalama64", "pineapple", "blair", "sun", "niobe", "pitti"],
   }
 
   if args.target_lunch   in vendor_qssi_mapping_dict['qssi']:
