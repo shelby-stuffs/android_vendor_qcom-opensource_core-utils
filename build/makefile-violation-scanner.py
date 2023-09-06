@@ -44,6 +44,7 @@ QCPATH = os.environ.get('QCPATH')
 TARGET_BOARD_PLATFORM = TARGET_PRODUCT
 sys.path.insert(1, "%sdevice/qcom/%s" % (ANDROID_BUILD_TOP, TARGET_PRODUCT))
 sys.path.insert(1, "%sdevice/qcom/qssi_64" % ANDROID_BUILD_TOP)
+sys.path.insert(1, "%sdevice/qcom/qssi_xrM" % ANDROID_BUILD_TOP)
 board_config_files = []
 product_config_files = []
 inherited_files_product = []
