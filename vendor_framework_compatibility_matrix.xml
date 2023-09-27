@@ -685,6 +685,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.hexlp</name>
+        <version>1</version>
+        <interface>
+            <name>IHexlpService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.qconfig</name>
         <version>1.0</version>
