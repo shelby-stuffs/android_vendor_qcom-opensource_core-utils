@@ -1408,6 +1408,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.kineticsxr.hardware.nordic</name>
+        <version>1.0</version>
+        <interface>
+            <name>INordic</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.wifi.wificfr</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
