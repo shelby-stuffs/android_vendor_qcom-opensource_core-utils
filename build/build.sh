@@ -579,7 +579,7 @@ function build_target_only () {
     command "run_qiifa_initialization"
     command "run_qiifa_dependency_checker target"
     command "make $QSSI_ARGS"
-    if [ "$BUILDING_WITH_VSDK" = true ]; then
+    if [ "$BUILDING_WITH_VSDK" = true && "$BOARD_VNDK_VERSION" != "current"]; then
         command "cp vendor/qcom/otatools_snapshot/otatools.zip out/dist/otatools.zip"
     fi
     command "run_qiifa"
