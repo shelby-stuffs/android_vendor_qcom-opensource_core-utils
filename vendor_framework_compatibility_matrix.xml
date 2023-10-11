@@ -1091,14 +1091,10 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         <interface>
             <name>ITrustedUI</name>
             <instance>default</instance>
-            <instance>qtee-vm</instance>
-            <instance>qtee-tz</instance>
         </interface>
         <interface>
             <name>ITrustedInput</name>
             <instance>default</instance>
-            <instance>qtee-vm</instance>
-            <instance>qtee-tz</instance>
         </interface>
     </hal>
     <!-- Secure image data processor HAL Service -->
