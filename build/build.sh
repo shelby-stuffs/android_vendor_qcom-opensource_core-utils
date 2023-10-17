@@ -662,7 +662,7 @@ function build_techpack_only () {
     fi
     command "source build/envsetup.sh"
     command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
-    command "python2 -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
+    command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
     command "run_qiifa_dependency_checker techpack"
