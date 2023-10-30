@@ -43,8 +43,6 @@ TARGET_PRODUCT = os.environ.get('TARGET_PRODUCT')
 QCPATH = os.environ.get('QCPATH')
 TARGET_BOARD_PLATFORM = TARGET_PRODUCT
 sys.path.insert(1, "%sdevice/qcom/%s" % (ANDROID_BUILD_TOP, TARGET_PRODUCT))
-sys.path.insert(1, "%sdevice/qcom/qssi_64" % ANDROID_BUILD_TOP)
-sys.path.insert(1, "%sdevice/qcom/qssi_xrM" % ANDROID_BUILD_TOP)
 board_config_files = []
 product_config_files = []
 inherited_files_product = []
@@ -66,11 +64,13 @@ try:
     if TARGET_PRODUCT == "qssi":
         print("Using legacy target whitelist for legacy qssi builds.")
         from makefile_whitelist import *
-    else:
+    elif "qssi" in TARGET_PRODUCT:
+        print("Using qssi_XY specific whitelist")
         from qssi_makefile_whitelist import *
-        if "qssi" not in TARGET_PRODUCT:
-            from target_makefile_whitelist import *
+    else:
         print("Using target specific whitelist")
+        from target_makefile_whitelist import *
+
 except ImportError:
     # Fall back to legacy
     print("Using legacy target whitelist.")
