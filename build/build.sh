@@ -562,7 +562,11 @@ function run_qiifa_dependency_checker() {
 
 function build_qssi_only () {
     command "source build/envsetup.sh"
-    command "lunch ${TARGET_PRODUCT}-${TARGET_BUILD_VARIANT}"
+    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk" ];then
+      command "lunch ${TARGET_PRODUCT}-${TARGET_RELEASE}-${TARGET_BUILD_VARIANT}"
+    else
+      command "lunch ${TARGET_PRODUCT}-${TARGET_BUILD_VARIANT}"
+    fi
     command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     command "make $QSSI_ARGS"
     COMMONSYS_INTF_SCRIPT="$QTI_BUILDTOOLS_DIR/build/commonsys_intf_checker.py"
@@ -573,7 +577,11 @@ function build_qssi_only () {
 
 function build_target_only () {
     command "source build/envsetup.sh"
-    command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
+    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk" ];then
+      command "lunch ${TARGET}-${TARGET_RELEASE}-${TARGET_BUILD_VARIANT}"
+    else
+      command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
+    fi
     command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
@@ -661,7 +669,11 @@ function build_techpack_only () {
         done
     fi
     command "source build/envsetup.sh"
-    command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
+    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk" ];then
+      command "lunch ${TARGET}-${TARGET_RELEASE}-${TARGET_BUILD_VARIANT}"
+    else
+      command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
+    fi
     command "python -B $QTI_BUILDTOOLS_DIR/build/makefile-violation-scanner.py"
     QSSI_ARGS="$QSSI_ARGS SKIP_ABI_CHECKS=$SKIP_ABI_CHECKS"
     command "run_qiifa_initialization"
