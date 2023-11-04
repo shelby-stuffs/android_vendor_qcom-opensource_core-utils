@@ -941,6 +941,15 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
            <instance>default</instance>
        </interface>
    </hal>
+   <!-- Configstore-HAL aidl service-->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.capabilityconfigstore</name>
+        <version>1</version>
+        <interface>
+            <name>ICapabilityConfigStore</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
    <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.data.iwlan</name>
        <version>1.0-1</version>
