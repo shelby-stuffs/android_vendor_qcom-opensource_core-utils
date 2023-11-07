@@ -53,14 +53,6 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
          <instance>objectTracker</instance>
        </interface>
    </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.qti.hardware.perf</name>
-         <version>2.0-3</version>
-         <interface>
-            <name>IPerf</name>
-            <instance>default</instance>
-         </interface>
-    </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.perf2</name>
          <version>1</version>
