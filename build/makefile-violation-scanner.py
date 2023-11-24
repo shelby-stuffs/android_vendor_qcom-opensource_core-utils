@@ -60,7 +60,7 @@ QSSI_VARIANT = "qssi_64"
 # Create a Vendor-QSSI mapping between targets
 # Add the qssi variant as a target to the list. This is needed for running this scanner on QSSI builds only
 vendor_qssi_mapping_dict = {
-    "qssi_64" : ["qssi_64","pineapple","sun","blair"],
+    "qssi_64" : ["qssi_64","pineapple","sun","blair","pitti"],
     "qssi_xrM" : ["qssi_xrM","niobe"],
 }
  
