@@ -141,6 +141,10 @@ TARGET_ONLY=0
 FULL_BUILD=0
 LIST_TECH_PACKAGE=""
 
+# Explicitly unset the PLATFORM_VERSION to avoid getting stale value from previous build
+# run in the same session.
+unset PLATFORM_VERSION
+
 # set below flag to 0 to disable build performance data collection.
 DCA_ENABLED=1
 DCA_OUT="out/dca"
