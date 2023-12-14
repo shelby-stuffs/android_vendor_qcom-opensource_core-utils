@@ -31,7 +31,6 @@ Changes from Qualcomm Innovation Center are provided under the following license
 Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
 SPDX-License-Identifier: BSD-3-Clause-Clear.
 -->
-
 <compatibility-matrix version="1.0" type="framework">
    <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.scve.panorama</name>
@@ -1236,7 +1235,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     <!-- Camera AON AIDL service -->
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.camera.aon</name>
-        <version>1</version>
+        <version>1-2</version>
         <interface>
             <name>IAONService</name>
             <instance>default</instance>
