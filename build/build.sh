@@ -541,7 +541,7 @@ function run_qiifa () {
                 command "python -B $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
                 echo "No techpack_name arguments were given with build command"
             else
-                command "python -B $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE --techpack_names $TECHPACK_BUILD_LIST"
+                command "python -B $QIIFA_SCRIPT --type api_management --enforced 1 $BUILD_TYPE --techpack_names $TECHPACK_BUILD_LIST"
             fi
         else
             command "python -B $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
@@ -590,7 +590,7 @@ function build_target_only () {
     if [ "$BUILDING_WITH_VSDK" = true && "$BOARD_VNDK_VERSION" != "current"]; then
         command "cp vendor/qcom/otatools_snapshot/otatools.zip out/dist/otatools.zip"
     fi
-    command "run_qiifa"
+    command "run_qiifa techpack"
 }
 
 function merge_only () {
