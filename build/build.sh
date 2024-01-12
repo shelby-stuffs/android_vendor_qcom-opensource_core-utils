@@ -566,7 +566,7 @@ function run_qiifa_dependency_checker() {
 
 function build_qssi_only () {
     command "source build/envsetup.sh"
-    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk" ];then
+    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk_food" ];then
       command "lunch ${TARGET_PRODUCT}-${TARGET_RELEASE}-${TARGET_BUILD_VARIANT}"
     else
       command "lunch ${TARGET_PRODUCT}-${TARGET_BUILD_VARIANT}"
@@ -581,7 +581,7 @@ function build_qssi_only () {
 
 function build_target_only () {
     command "source build/envsetup.sh"
-    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk" ];then
+    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk_food" ];then
       command "lunch ${TARGET}-${TARGET_RELEASE}-${TARGET_BUILD_VARIANT}"
     else
       command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
@@ -673,7 +673,7 @@ function build_techpack_only () {
         done
     fi
     command "source build/envsetup.sh"
-    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk" ];then
+    if [ "$TARGET_RELEASE" = "next" ] || [ "$TARGET_RELEASE" = "trunk_food" ];then
       command "lunch ${TARGET}-${TARGET_RELEASE}-${TARGET_BUILD_VARIANT}"
     else
       command "lunch ${TARGET}-${TARGET_BUILD_VARIANT}"
