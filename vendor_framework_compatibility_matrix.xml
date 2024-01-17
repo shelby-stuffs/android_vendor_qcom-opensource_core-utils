@@ -31,7 +31,6 @@ Changes from Qualcomm Innovation Center are provided under the following license
 Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
 SPDX-License-Identifier: BSD-3-Clause-Clear.
 -->
-
 <compatibility-matrix version="1.0" type="framework">
    <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.scve.panorama</name>
@@ -500,7 +499,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.ims</name>
-        <version>1-12</version>
+        <version>1-14</version>
         <interface>
             <name>IImsRadio</name>
             <instance>imsradio0</instance>
@@ -965,6 +964,15 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
            <instance>default</instance>
        </interface>
    </hal>
+   <!-- Configstore-HAL aidl service-->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.capabilityconfigstore</name>
+        <version>1</version>
+        <interface>
+            <name>ICapabilityConfigStore</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
    <hal format="hidl" optional="true">
        <name>vendor.qti.hardware.data.iwlan</name>
        <version>1.0-1</version>
@@ -1236,7 +1244,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     <!-- Camera AON AIDL service -->
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.camera.aon</name>
-        <version>1</version>
+        <version>1-2</version>
         <interface>
             <name>IAONService</name>
             <instance>default</instance>
