@@ -162,8 +162,8 @@ def find_commonsys_intf_project_paths():
             class_type   = module_info_dict[module]['class'][0]
         except IndexError:
             continue
-	except KeyError:
-	    continue
+        except KeyError:
+            continue
 
         if project_path is None or install_path is None or class_type is None:
             continue
