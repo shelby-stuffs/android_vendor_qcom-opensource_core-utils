@@ -1673,4 +1673,13 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- DIAG-HAL service-->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.diaghal</name>
+        <version>1</version>
+        <interface>
+            <name>Idiag</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>
