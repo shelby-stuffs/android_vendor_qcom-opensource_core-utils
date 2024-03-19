@@ -487,7 +487,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.ims</name>
-        <version>1-14</version>
+        <version>1-15</version>
         <interface>
             <name>IImsRadio</name>
             <instance>imsradio0</instance>
@@ -716,6 +716,16 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- DSP Service aidl -->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.dsp</name>
+        <version>1</version>
+        <interface>
+            <name>IDspService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <!-- DSP Service hidl -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.dsp</name>
         <version>1.0</version>
@@ -1074,6 +1084,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         <interface>
             <name>IWifiStats</name>
             <instance>wifiStats</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.wifi.wifilearner</name>
+        <version>1</version>
+        <interface>
+            <name>IWifiStats</name>
+            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -1539,6 +1557,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.fm</name>
+        <version>1</version>
+        <interface>
+            <name>IFmHci</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.bluetooth.xpanprovider</name>
         <version>1</version>
         <interface>
@@ -1652,6 +1678,23 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         <version>1</version>
         <interface>
             <name>IImsCmService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <!-- DIAG-HAL service-->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.diaghal</name>
+        <version>1</version>
+        <interface>
+            <name>Idiag</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.qccsyshal_aidl</name>
+        <version>1</version>
+        <interface>
+            <name>IQccsyshal</name>
             <instance>default</instance>
         </interface>
     </hal>

@@ -149,6 +149,12 @@ unset PLATFORM_VERSION
 DCA_ENABLED=1
 DCA_OUT="out/dca"
 
+QIIFA_PYTHON="python"
+QIIFA_SANDBOX_ENABLED=0
+QIIFA_MAIN_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
+QIIFA_TARGET_BASH_CONFIG_FILEPATH="$QCPATH/QIIFA-cmd-vendor/qiifa_bash_configs"
+QIIFA_FRAMEWORK_BASH_CONFIG_FILEPATH="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_config/qiifa_bash_configs"
+
 while [[ $# -gt 0 ]]
     do
     arg="$1"
@@ -194,6 +200,31 @@ function target_product_in_list() {
         fi
     done
     return 1
+}
+
+function check_sandbox_configuration() {
+    if [ -f "$QIIFA_FRAMEWORK_BASH_CONFIG_FILEPATH" ];then
+        command ". $QIIFA_FRAMEWORK_BASH_CONFIG_FILEPATH"
+        if [[ "$ENABLE_SANDBOX" == 1 ]];then
+            if [ -f "$QIIFA_TARGET_BASH_CONFIG_FILEPATH" ];then
+                command ". $QIIFA_TARGET_BASH_CONFIG_FILEPATH"
+                if [[ "$ENABLE_SANDBOX" == 1 ]];then
+                    QIIFA_SANDBOX_ENABLED=1
+                    log "QIIFA Sandbox enabled"
+                else
+                    QIIFA_SANDBOX_ENABLED=0
+                    log "QIIFA Sandbox disabled"
+                fi
+            else
+                # Handles QSSI side scenario as QIIFA-cmd is not present on QSSI
+                QIIFA_SANDBOX_ENABLED=1
+                log "QIIFA Sandbox enabled"
+            fi
+        else
+            QIIFA_SANDBOX_ENABLED=0
+            log "QIIFA Sandbox disabled"
+        fi
+    fi
 }
 
 # If none of the discrete options are passed, this is a full build
@@ -502,9 +533,13 @@ function generate_ota_zip () {
 }
 
 function run_qiifa_initialization() {
+    command "check_sandbox_configuration"
+    if [[ "$QIIFA_SANDBOX_ENABLED" -eq 1 ]]; then
+        command "locate_qiifa_dependencies"
+    fi
     QIIFA_IN_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_initialization.py"
     QIIFA_TP_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_techpackage_initialization.py"
-    QIIFA_SCRIPT = ""
+    QIIFA_SCRIPT=""
     if [[ -f $QIIFA_IN_SCRIPT ]];then
      QIIFA_SCRIPT=$QIIFA_IN_SCRIPT
     elif [[ -f $QIIFA_TP_SCRIPT ]];then
@@ -512,18 +547,31 @@ function run_qiifa_initialization() {
     fi
     IFS=':' read -ra ADDR <<< "${LIST_TECH_PACKAGE:15}"
     if [[ -f $QIIFA_SCRIPT ]]; then
-     command "python -B $QIIFA_SCRIPT ${ADDR[0]}"
+     command "$QIIFA_PYTHON -B $QIIFA_SCRIPT ${ADDR[0]}"
     fi
 }
 
 function run_qiifa_for_techpackage () {
-    QIIFA_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
-    if [ -f $QIIFA_SCRIPT ]; then
-     command "python -B $QIIFA_SCRIPT --create techpackage --enforced 1"
+    if [ -f $QIIFA_MAIN_SCRIPT ]; then
+     command "$QIIFA_PYTHON -B $QIIFA_MAIN_SCRIPT --create techpackage --enforced 1"
+    fi
+}
+
+function locate_qiifa_dependencies(){
+    QIIFA_TOOLS_PYTHON="/pkg/QIIFA/sandbox/QIIFA-tools/qiifa-python/Python-3.12.1/bin/python3.12"
+    if [[ -f $QIIFA_TOOLS_PYTHON ]];then
+     QIIFA_PYTHON="$QIIFA_TOOLS_PYTHON"
+     log "QIIFA using Python Interpretor found in QIIFA tools at $QIIFA_PYTHON"
+    else
+     log "QIIFA-tools python not found using userspace python"
     fi
 }
 
 function run_qiifa () {
+    command "check_sandbox_configuration"
+    if [[ "$QIIFA_SANDBOX_ENABLED" -eq 1 ]]; then
+        command "locate_qiifa_dependencies"
+    fi
     BUILD_TYPE=""
     if [ "$1" == "techpack" ]; then
         BUILD_TYPE="--techpack_build"
@@ -538,29 +586,31 @@ function run_qiifa () {
     if [[ -n ${ADDR[1]} && "${ADDR[1]}" == "golden" ]]; then
       command "run_qiifa_for_techpackage"
     fi
-    QIIFA_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
-    if [ -f $QIIFA_SCRIPT ]; then
+    if [ -f $QIIFA_MAIN_SCRIPT ]; then
         if [ "$1" == "techpack" ]; then
             if [ "$TECHPACK_BUILD_LIST" == "" ]; then
-                command "python -B $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
+                command "$QIIFA_PYTHON -B $QIIFA_MAIN_SCRIPT --type all --enforced 1 $BUILD_TYPE"
                 echo "No techpack_name arguments were given with build command"
             else
-                command "python -B $QIIFA_SCRIPT --type api_management --enforced 1 $BUILD_TYPE --techpack_names $TECHPACK_BUILD_LIST"
+                command "$QIIFA_PYTHON -B $QIIFA_MAIN_SCRIPT --type api_management --enforced 1 $BUILD_TYPE --techpack_names $TECHPACK_BUILD_LIST"
             fi
         else
-            command "python -B $QIIFA_SCRIPT --type all --enforced 1 $BUILD_TYPE"
+            command "$QIIFA_PYTHON -B $QIIFA_MAIN_SCRIPT --type all --enforced 1 $BUILD_TYPE"
         fi
     fi
 }
 
 function run_qiifa_dependency_checker() {
+    command "check_sandbox_configuration"
+    if [[ "$QIIFA_SANDBOX_ENABLED" -eq 1 ]]; then
+        command "locate_qiifa_dependencies"
+    fi
     BUILD_TYPE=""
     if [ "$1" == "techpack" ]; then
         BUILD_TYPE="--techpack_build"
     fi
-    QIIFA_SCRIPT="$QCPATH/commonsys-intf/QIIFA-fwk/qiifa_main.py"
-    if [ -f $QIIFA_SCRIPT ]; then
-     command "python -B $QIIFA_SCRIPT --type api_dep --enforced 1 $BUILD_TYPE"
+    if [ -f $QIIFA_MAIN_SCRIPT ]; then
+     command "$QIIFA_PYTHON -B $QIIFA_MAIN_SCRIPT --type api_dep --enforced 1 $BUILD_TYPE"
     fi
 }
 
@@ -591,7 +641,7 @@ function build_target_only () {
     command "run_qiifa_initialization"
     command "run_qiifa_dependency_checker target"
     command "make $QSSI_ARGS"
-    if [ "$BUILDING_WITH_VSDK" = true && "$BOARD_VNDK_VERSION" != "current"]; then
+    if [[ "$BUILDING_WITH_VSDK" = true && "$BOARD_VNDK_VERSION" != "current" ]]; then
         command "cp vendor/qcom/otatools_snapshot/otatools.zip out/dist/otatools.zip"
     fi
     command "run_qiifa techpack"
@@ -700,7 +750,6 @@ else # For QSSI targets
         log "Executing a full build ..."
         full_build
     fi
-
     if [[ "$QSSI_ONLY" -eq 1 ]]; then
         log "Executing a QSSI only build ..."
         build_qssi_only

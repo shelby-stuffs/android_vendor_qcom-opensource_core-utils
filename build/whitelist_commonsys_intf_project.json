@@ -8,5 +8,6 @@
 "vendor/google_clockwork/samples/ModernDecompWatchfaces",
 "vendor/widevine/libwvdrmengine/apex",
 "vendor/widevine/libwvdrmengine/apex/nonupdatable/lazy",
-"vendor/qcom/proprietary/interfaces/virtualization/aidl"
+"vendor/qcom/proprietary/interfaces/virtualization/aidl",
+"vendor/widevine/libwvdrmengine/aconfig"
 ]
