@@ -201,7 +201,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>com.qualcomm.qti.dpm.api</name>
         <version>1.0</version>
         <interface>
@@ -263,7 +263,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
    </hal>
-   <hal format="hidl" optional="true">
+   <hal format="hidl" optional="true" max-level="8">
        <name>com.qualcomm.qti.imscmservice</name>
        <version>2.0-2</version>
        <interface>
@@ -271,7 +271,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
          <instance>qti.ims.connectionmanagerservice</instance>
        </interface>
    </hal>
-   <hal format="hidl" optional="true">
+   <hal format="hidl" optional="true" max-level="8">
        <name>com.qualcomm.qti.uceservice</name>
        <version>2.0-1</version>
        <version>2.2</version>
@@ -386,7 +386,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.hardware.data.latency</name>
         <impl level="generic"></impl>
         <version>1.0</version>
@@ -395,7 +395,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.hardware.data.connection</name>
         <version>1.0-1</version>
         <interface>
@@ -421,7 +421,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.hardware.cacert</name>
         <version>1.0</version>
         <interface>
@@ -787,7 +787,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.imsrtpservice</name>
         <version>3.0</version>
         <version>3.1</version>
@@ -866,7 +866,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>wigighostapd</instance>
         </interface>
     </hal>
-   <hal format="hidl" optional="true">
+   <hal format="hidl" optional="true" max-level="8">
        <name>vendor.qti.ims.callinfo</name>
        <version>1.0</version>
        <interface>
@@ -874,7 +874,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
          <instance>default</instance>
        </interface>
    </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.data.factory</name>
         <version>1.0</version>
         <version>2.0-8</version>
@@ -983,7 +983,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
-   <hal format="hidl" optional="true">
+   <hal format="hidl" optional="true" max-level="8">
        <name>vendor.qti.hardware.data.iwlan</name>
        <version>1.0-1</version>
        <interface>
@@ -1310,7 +1310,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>qepi</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.ims.factory</name>
         <version>1.0-1</version>
         <version>2.0-2</version>
@@ -1347,7 +1347,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <!-- MwqemAdapter HAL service -->
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.hardware.mwqemadapter</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -1365,7 +1365,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         </interface>
     </hal>
     <!-- DpmService HAL service -->
-    <hal format="hidl" optional="true">
+    <hal format="hidl" optional="true" max-level="8">
         <name>vendor.qti.hardware.dpmservice</name>
         <transport>hwbinder</transport>
         <version>1.0-1</version>
