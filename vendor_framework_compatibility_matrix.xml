@@ -117,6 +117,26 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
              <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.display.aiqe</name>
+        <version>1</version>
+        <interface>
+             <name>IDisplayAiqe</name>
+             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.minkipcbinder</name>
+        <version>1</version>
+        <interface>
+            <name>IMinkServer</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IMinkTransact</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.qseecom</name>
         <version>1.0</version>
@@ -487,7 +507,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.ims</name>
-        <version>1-15</version>
+        <version>1-16</version>
         <interface>
             <name>IImsRadio</name>
             <instance>imsradio0</instance>
@@ -567,7 +587,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.radio.qtiradioconfig</name>
-        <version>1-5</version>
+        <version>1-6</version>
         <interface>
             <name>IQtiRadioConfig</name>
             <instance>default</instance>
@@ -1072,6 +1092,15 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.bluetooth_sar</name>
         <version>1.0-1</version>
+        <interface>
+            <name>IBluetoothSar</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <!-- BluetoothSar service-->
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.bluetooth_sar</name>
+        <version>1</version>
         <interface>
             <name>IBluetoothSar</name>
             <instance>default</instance>
