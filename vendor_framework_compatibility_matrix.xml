@@ -68,6 +68,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
          </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.MemHal</name>
+         <version>1</version>
+         <interface>
+            <name>IMemHal</name>
+            <instance>default</instance>
+         </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.display.color</name>
         <version>1.0-7</version>
@@ -1212,6 +1220,14 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>qti-tvm</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.c2pa</name>
+        <version>1</version>
+        <interface>
+            <name>IC2PA</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <!-- cryptfshw HAL service -->
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.cryptfshw</name>
@@ -1724,6 +1740,22 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
         <version>1</version>
         <interface>
             <name>IQccsyshal</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.syshealthmon</name>
+        <version>1</version>
+        <interface>
+            <name>ISysHealthMon</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.data.ntn</name>
+        <version>1</version>
+        <interface>
+            <name>IQmsSatelliteService</name>
             <instance>default</instance>
         </interface>
     </hal>
