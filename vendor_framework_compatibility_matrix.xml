@@ -1540,6 +1540,30 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
             <instance>default</instance>
         </interface>
     </hal>
+     <hal format="aidl" optional="true">
+        <name>vendor.qti.snapdragonServices</name>
+        <version>1</version>
+        <interface>
+            <name>ISnapdragonServices</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.snapdragonServices.sanityService</name>
+        <version>1</version>
+        <interface>
+            <name>ISanityService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.snapdragonServices.sanityService</name>
+        <version>1</version>
+        <interface>
+            <name>ISanityADK</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.sxrhal</name>
         <transport>hwbinder</transport>
