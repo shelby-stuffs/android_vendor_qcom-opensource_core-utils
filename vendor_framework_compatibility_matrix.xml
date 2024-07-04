@@ -1037,6 +1037,7 @@ SPDX-License-Identifier: BSD-3-Clause-Clear.
        <interface>
            <name>IComponentStore</name>
            <instance>default</instance>
+           <instance>software</instance>
        </interface>
    </hal>
    <hal format="hidl" optional="true">
