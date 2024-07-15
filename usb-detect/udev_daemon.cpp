@@ -22,7 +22,7 @@
 const int MAX_UEVENT_BUFFER_LENGTH = 64*1024;
 static int uevent_fd = -1;
 
-const std::string PERIPHERAL_PRODUCT_ID= "908c";
+const std::string PERIPHERAL_PRODUCT_ID= "9131";
 const std::string PERIPHERAL_VENDOR_ID_UEVENT = "5c6";
 // There is difference in Product id sent in UEVENT and stored at USB_GADGET_PRODUCT_ID_PATH
 const std::string PERIPHERAL_VENDOR_ID_PROC = "05c6";
